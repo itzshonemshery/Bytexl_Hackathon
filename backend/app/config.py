@@ -2,9 +2,9 @@ import os
 from pydantic import BaseModel
 
 class Settings(BaseModel):
-    APP_NAME: str = "Health Copilot"
+    APP_NAME: str = "Healthiecure"
     API_V1_STR: str = "/api/v1"
-    SECRET_KEY: str = os.getenv("SECRET_KEY", "health-copilot-secure-dev-jwt-key-2026-altrix")
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "healthiecure-secure-dev-jwt-key-2026-altrix")
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     

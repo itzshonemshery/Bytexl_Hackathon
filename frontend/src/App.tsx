@@ -66,35 +66,37 @@ const AppContent: React.FC = () => {
         openAuthModal={handleOpenAuth}
       />
 
-      {/* Main Layout Area */}
+      {/* Main Layout Area with Slide Transition Animation */}
       {!isAuthenticated || currentTab === "landing" ? (
         <main className="flex-1">
-          {currentTab === "landing" && (
-            <LandingPage
-              onGetStarted={() => handleOpenAuth("signup")}
-              onExploreFeatures={() => {
-                const featEl = document.getElementById("features");
-                featEl?.scrollIntoView({ behavior: "smooth" });
-              }}
-              onOpenDemo={handleQuickDemo}
-              onGoToEvaluation={() => handleNavigate("evaluation")}
-            />
-          )}
-          {currentTab === "evaluation" && (
-            <div className="p-4 sm:p-8">
-              <EvaluationPage />
-            </div>
-          )}
-          {currentTab === "fhir" && (
-            <div className="p-4 sm:p-8">
-              <FHIRPreviewPage />
-            </div>
-          )}
-          {currentTab === "privacy" && (
-            <div className="p-4 sm:p-8">
-              <PrivacyPage />
-            </div>
-          )}
+          <div key={currentTab} className="page-enter">
+            {currentTab === "landing" && (
+              <LandingPage
+                onGetStarted={() => handleOpenAuth("signup")}
+                onExploreFeatures={() => {
+                  const featEl = document.getElementById("features");
+                  featEl?.scrollIntoView({ behavior: "smooth" });
+                }}
+                onOpenDemo={handleQuickDemo}
+                onGoToEvaluation={() => handleNavigate("evaluation")}
+              />
+            )}
+            {currentTab === "evaluation" && (
+              <div className="p-4 sm:p-8">
+                <EvaluationPage />
+              </div>
+            )}
+            {currentTab === "fhir" && (
+              <div className="p-4 sm:p-8">
+                <FHIRPreviewPage />
+              </div>
+            )}
+            {currentTab === "privacy" && (
+              <div className="p-4 sm:p-8">
+                <PrivacyPage />
+              </div>
+            )}
+          </div>
         </main>
       ) : (
         <div className="flex-1 flex overflow-hidden">
@@ -103,44 +105,46 @@ const AppContent: React.FC = () => {
             <Sidebar currentTab={currentTab} setCurrentTab={handleNavigate} />
           </div>
 
-          {/* Dynamic Content Pane */}
+          {/* Dynamic Content Pane with Smooth View/Slide Transition Animation */}
           <main className="flex-1 p-4 sm:p-8 overflow-y-auto max-h-[calc(100vh-4rem)]">
-            {currentTab === "dashboard" && <Dashboard onNavigate={handleNavigate} />}
-            {currentTab === "upload" && (
-              <UploadPage
-                onUploadSuccess={(docId) => {
-                  setActiveDocId(docId);
-                  setCurrentTab("review");
-                }}
-              />
-            )}
-            {currentTab === "review" && (
-              <ReviewPage
-                docId={activeDocId}
-                onConfirmSuccess={() => setCurrentTab("timeline")}
-                onBack={() => setCurrentTab("timeline")}
-              />
-            )}
-            {currentTab === "timeline" && (
-              <TimelinePage
-                onViewDoc={(docId) => {
-                  setActiveDocId(docId);
-                  setCurrentTab("review");
-                }}
-                onViewSummary={(docId) => {
-                  setActiveDocId(docId);
-                  setCurrentTab("summary");
-                }}
-              />
-            )}
-            {currentTab === "labs" && <LabReportsPage />}
-            {currentTab === "medications" && <MedicationsPage />}
-            {currentTab === "summary" && <SummaryPage docId={activeDocId} />}
-            {currentTab === "abha" && <ABHAPage />}
-            {currentTab === "fhir" && <FHIRPreviewPage />}
-            {currentTab === "evaluation" && <EvaluationPage />}
-            {currentTab === "privacy" && <PrivacyPage />}
-            {currentTab === "profile" && <ProfilePage />}
+            <div key={currentTab} className="page-enter">
+              {currentTab === "dashboard" && <Dashboard onNavigate={handleNavigate} />}
+              {currentTab === "upload" && (
+                <UploadPage
+                  onUploadSuccess={(docId) => {
+                    setActiveDocId(docId);
+                    setCurrentTab("review");
+                  }}
+                />
+              )}
+              {currentTab === "review" && (
+                <ReviewPage
+                  docId={activeDocId}
+                  onConfirmSuccess={() => setCurrentTab("timeline")}
+                  onBack={() => setCurrentTab("timeline")}
+                />
+              )}
+              {currentTab === "timeline" && (
+                <TimelinePage
+                  onViewDoc={(docId) => {
+                    setActiveDocId(docId);
+                    setCurrentTab("review");
+                  }}
+                  onViewSummary={(docId) => {
+                    setActiveDocId(docId);
+                    setCurrentTab("summary");
+                  }}
+                />
+              )}
+              {currentTab === "labs" && <LabReportsPage />}
+              {currentTab === "medications" && <MedicationsPage />}
+              {currentTab === "summary" && <SummaryPage docId={activeDocId} />}
+              {currentTab === "abha" && <ABHAPage />}
+              {currentTab === "fhir" && <FHIRPreviewPage />}
+              {currentTab === "evaluation" && <EvaluationPage />}
+              {currentTab === "privacy" && <PrivacyPage />}
+              {currentTab === "profile" && <ProfilePage />}
+            </div>
           </main>
         </div>
       )}

@@ -1,6 +1,6 @@
 export const en = {
   // Brand & Nav
-  appName: "Health Copilot",
+  appName: "Healthiecure",
   tagline: "Your Healthcare, Clearly Understood.",
   navHome: "Home",
   navFeatures: "Features",
@@ -22,11 +22,11 @@ export const en = {
   navDemoMode: "Demo Mode (Dr. & Patient)",
 
   // Hero
-  heroEyebrow: "Your AI Health Companion",
+  heroEyebrow: "Your AI Personal Health Companion",
   heroHeadline: "Your Healthcare, Clearly Understood.",
   heroSubheadline: "Transform complex prescriptions, lab results, and hospital discharge summaries into clear, organized, and traceable health records for informed conversations with your doctor.",
-  heroCTA: "Get Started",
-  heroSecondaryCTA: "Explore Demo Records",
+  heroCTA: "Get Started Free",
+  heroSecondaryCTA: "Try 1-Click Demo",
   heroBenefit1: "Understand Reports",
   heroBenefit1Desc: "Plain-language interpretations grounded in your actual lab reference ranges.",
   heroBenefit2: "Track Health History",
@@ -47,7 +47,7 @@ export const en = {
   feat4Desc: "Structured for Ayushman Bharat Digital Mission (ABDM) with native FHIR R4 resource mapping and simulated sandbox care context imports.",
 
   // How It Works
-  howItWorksTitle: "How Health Copilot Works",
+  howItWorksTitle: "How Healthiecure Works",
   howItWorksSubtitle: "Four seamless steps from paper documents to organized medical insights.",
   step1Title: "1. Upload Medical Document",
   step1Desc: "Upload any digital or scanned prescription, blood report, or hospital summary in PDF or image format.",
@@ -68,7 +68,7 @@ export const en = {
   trust3Title: "Explicit Patient Consent",
   trust3Desc: "No medical data is shared without explicit consent. Simulated ABHA connections can be revoked instantly.",
   trust4Title: "Transparent Non-Diagnostic Boundary",
-  trust4Desc: "Health Copilot strictly organizes records and explains lab ranges. It never replaces your physician or alters medication.",
+  trust4Desc: "Healthiecure strictly organizes records and explains lab ranges. It never replaces your physician or alters medication.",
 
   // Dashboard
   welcomeBack: "Welcome back",
@@ -115,6 +115,6 @@ export const en = {
   questionsForDoctor: "Suggested Questions for Your Doctor",
 
   // Disclaimer
-  medicalDisclaimer: "Medical Disclaimer: Health Copilot supports understanding and organizing personal health information. It does not provide medical diagnoses or recommend changing medication. Always consult a qualified physician.",
+  medicalDisclaimer: "Medical Disclaimer: Healthiecure supports understanding and organizing personal health information. It does not provide medical diagnoses or recommend changing medication. Always consult a qualified physician.",
   footerRights: "All rights reserved. Designed for Altrix Labs Healthcare Hackathon."
 };

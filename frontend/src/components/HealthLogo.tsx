@@ -21,8 +21,8 @@ export const HealthLogo: React.FC<HealthLogoProps> = ({ className = "", size = "
 
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
-      {/* Heart + ECG Icon */}
-      <div className={`${iconSizes[size]} relative flex items-center justify-center rounded-xl bg-medical-red shadow-sm text-white flex-shrink-0`}>
+      {/* Heart + ECG Clinical Emblem */}
+      <div className={`${iconSizes[size]} relative flex items-center justify-center rounded-xl bg-medical-red shadow-sm text-white flex-shrink-0 transition-transform duration-200 hover:scale-105`}>
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -38,11 +38,11 @@ export const HealthLogo: React.FC<HealthLogoProps> = ({ className = "", size = "
       </div>
 
       <div className="flex flex-col leading-none">
-        <span className={`font-bold tracking-tight text-medical-black ${textSizes[size]}`}>
-          Health<span className="text-medical-red">Copilot</span>
+        <span className={`font-serif font-bold tracking-tight text-medical-black ${textSizes[size]}`}>
+          healthie<span className="text-medical-red italic font-normal">cure</span>
         </span>
         {withSubtitle && (
-          <span className="text-[10px] uppercase tracking-wider text-medical-muted font-medium mt-0.5">
+          <span className="text-[10px] uppercase tracking-wider text-medical-muted font-sans font-semibold mt-0.5">
             Personal Health Platform
           </span>
         )}

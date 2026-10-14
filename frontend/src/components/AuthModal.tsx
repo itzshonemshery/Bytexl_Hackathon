@@ -75,8 +75,8 @@ export const AuthModal: React.FC<AuthModalProps> = ({
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-medical-red/10 text-medical-red mb-3">
             <Lock className="w-6 h-6" />
           </div>
-          <h2 className="text-xl font-bold text-medical-black">
-            {mode === "login" ? "Sign in to Health Copilot" : "Create Patient Account"}
+          <h2 className="text-xl font-bold font-serif text-medical-black">
+            {mode === "login" ? "Sign in to Healthiecure" : "Create Patient Account"}
           </h2>
           <p className="text-xs text-medical-muted mt-1">
             Access your unified health history and medical document intelligence.

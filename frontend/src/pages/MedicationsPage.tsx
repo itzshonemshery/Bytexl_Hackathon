@@ -102,7 +102,7 @@ export const MedicationsPage: React.FC = () => {
           <span>Medication Safety Protocol</span>
         </div>
         <p className="text-[11px] leading-relaxed">
-          {data?.safety_notice || "Health Copilot organizes only documented medications. Never start, stop, or change doses without consulting your doctor."}
+          {data?.safety_notice || "Healthiecure organizes only documented medications. Never start, stop, or change doses without consulting your doctor."}
         </p>
       </div>
 

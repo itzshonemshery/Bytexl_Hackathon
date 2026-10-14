@@ -4,8 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-medical-surface text-medical-charcoal antialiased selection:bg-medical-red selection:text-white;
+    @apply bg-medical-surface text-medical-charcoal antialiased selection:bg-medical-red selection:text-white font-sans;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: 'Libre Baskerville', Georgia, serif;
   }
 }
 
@@ -23,18 +27,31 @@
   animation: pulse-ecg 4s linear infinite;
 }
 
+/* Page and slide transitions */
+.page-enter {
+  animation: slide-fade 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-next-enter {
+  animation: slide-next 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.slide-prev-enter {
+  animation: slide-prev 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f8f9fa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
-  border-radius: 3px;
+  background: #d4d7dc;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #a0a6b1;
 }

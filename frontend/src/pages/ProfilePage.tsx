@@ -89,7 +89,7 @@ export const ProfilePage: React.FC = () => {
         <div className="p-4 rounded-xl bg-medical-red-blush border border-medical-red/20 text-xs text-medical-red flex items-center gap-2">
           <Sparkles className="w-4 h-4 flex-shrink-0" />
           <span>
-            You are exploring Health Copilot using synthetic patient data (Aarav Sharma). Edits are saved to your test session.
+            You are exploring Healthiecure using synthetic patient data (Aarav Sharma). Edits are saved to your test session.
           </span>
         </div>
       )}
