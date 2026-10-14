@@ -14,11 +14,15 @@ export const HeartbeatPulse: React.FC<HeartbeatPulseProps> = ({
   height = 48,
 }) => {
   return (
-    <div className={`relative flex items-center overflow-hidden ${className}`} style={{ height }}>
+    <div
+      className={`relative flex items-center overflow-hidden ${className}`}
+      style={{ height, maxHeight: height, width: "100%", maxWidth: "100%" }}
+    >
       <svg
         viewBox="0 0 600 60"
         className="w-full h-full preserve-3d"
         preserveAspectRatio="none"
+        style={{ width: "100%", height: "100%", maxHeight: height }}
       >
         <defs>
           {glow && (

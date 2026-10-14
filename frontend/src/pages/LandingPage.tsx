@@ -178,7 +178,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </h1>
 
               {/* Moving Glowing Minimal Heartbeat Line */}
-              <div className="w-full max-w-sm py-1">
+              <div className="w-full max-w-sm py-1" style={{ maxWidth: 360, overflow: "hidden" }}>
                 <HeartbeatPulse className="heartbeat-glowing" glow={true} height={38} />
               </div>
 
@@ -229,11 +229,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
                 {/* Doctor-Patient Comfort Picture Frame */}
-                <div className="relative rounded-3xl overflow-hidden shadow-clinical border border-neutral-200/90 bg-white group">
+                <div
+                  className="relative rounded-3xl overflow-hidden shadow-clinical border border-neutral-200/90 bg-white group"
+                  style={{ maxWidth: 460, width: "100%", margin: "0 auto", borderRadius: "1.5rem", overflow: "hidden" }}
+                >
                   <img
                     src="/doctor-patient-comfort.png"
                     alt="Doctor attentively consulting and listening to patient in a comforting clinic setting"
                     className="w-full h-[420px] sm:h-[460px] object-cover object-top transition-transform duration-700 group-hover:scale-102"
+                    style={{ width: "100%", height: 440, objectFit: "cover", objectPosition: "top", display: "block" }}
                   />
 
                   {/* Gradient Overlay for Readable Floating Cards */}
