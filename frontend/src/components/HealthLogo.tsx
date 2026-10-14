@@ -39,7 +39,7 @@ export const HealthLogo: React.FC<HealthLogoProps> = ({ className = "", size = "
 
       <div className="flex flex-col leading-none">
         <span className={`font-serif font-bold tracking-tight text-medical-black ${textSizes[size]}`}>
-          healthie<span className="text-medical-red italic font-normal">cure</span>
+          Healthie<span className="text-medical-red italic font-normal">Cure</span>
         </span>
         {withSubtitle && (
           <span className="text-[10px] uppercase tracking-wider text-medical-muted font-sans font-semibold mt-0.5">

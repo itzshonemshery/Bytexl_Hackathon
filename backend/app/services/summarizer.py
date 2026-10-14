@@ -174,12 +174,12 @@ class AISummarizer:
 
         else:
             title = "Document Overview"
-            what_it_says = "Healthiecure has processed this medical record and organized its readable contents."
+            what_it_says = "HealthieCure has processed this medical record and organized its readable contents."
             important_results = ["Document archived in your chronological health timeline."]
             questions = ["Doctor, what are the next recommended steps for this health record?"]
 
         disclaimer = (
-            "Medical Disclaimer: Healthiecure supports understanding and organizing personal health information. "
+            "Medical Disclaimer: HealthieCure supports understanding and organizing personal health information. "
             "It does not replace a qualified healthcare professional, make medical diagnoses, or advise on altering medication dosages. "
             "Always consult your doctor regarding medical questions."
         )
@@ -291,12 +291,12 @@ class AISummarizer:
 
         else:
             title = "दस्तावेज़ सारांश"
-            what_it_says = "हेल्थीक्योर (Healthiecure) ने आपके चिकित्सा दस्तावेज़ का विश्लेषण कर इसे आपकी स्वास्थ्य समयरेखा में सुरक्षित कर लिया है।"
+            what_it_says = "हेल्थीक्योर (HealthieCure) ने आपके चिकित्सा दस्तावेज़ का विश्लेषण कर इसे आपकी स्वास्थ्य समयरेखा में सुरक्षित कर लिया है।"
             important_results = ["दस्तावेज़ सफलतापूर्वक सहेजा गया।"]
             questions = ["डॉक्टर से इस रिपोर्ट के अगले चरणों के बारे में परामर्श लें।"]
 
         disclaimer = (
-            "चिकित्सा अस्वीकरण (Medical Disclaimer): हेल्थीक्योर (Healthiecure) स्वास्थ्य जानकारी को व्यवस्थित करने और समझने में सहायता करता है। "
+            "चिकित्सा अस्वीकरण (Medical Disclaimer): हेल्थीक्योर (HealthieCure) स्वास्थ्य जानकारी को व्यवस्थित करने और समझने में सहायता करता है। "
             "यह किसी योग्य चिकित्सक या डॉक्टर का विकल्प नहीं है और न ही कोई दवा शुरू करने या बदलने की सलाह देता है। "
             "किसी भी चिकित्सीय निर्णय के लिए हमेशा अपने डॉक्टर से परामर्श करें।"
         )

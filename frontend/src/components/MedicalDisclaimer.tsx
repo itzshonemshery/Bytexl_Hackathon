@@ -15,7 +15,7 @@ export const MedicalDisclaimer: React.FC<{ className?: string; compact?: boolean
       >
         <AlertCircle className="w-3.5 h-3.5 text-medical-red flex-shrink-0" />
         <span className="truncate">
-          Healthiecure supports health understanding. It does not provide medical diagnoses or replace a doctor.
+          HealthieCure supports health understanding. It does not provide medical diagnoses or replace a doctor.
         </span>
       </div>
     );

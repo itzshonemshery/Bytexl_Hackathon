@@ -86,7 +86,7 @@ export const PrivacyPage: React.FC = () => {
           <span>Prototype Scope vs Production Certification</span>
         </h3>
         <p className="text-xs text-medical-muted leading-relaxed">
-          In compliance with hackathon safety requirements, Healthiecure clearly distinguishes functional prototype capabilities from regulatory production certifications:
+          In compliance with hackathon safety requirements, HealthieCure clearly distinguishes functional prototype capabilities from regulatory production certifications:
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">

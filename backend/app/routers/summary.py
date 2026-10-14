@@ -86,14 +86,14 @@ def get_holistic_summary(
                 "क्या कोई आहार योजना या व्यायाम दिशानिर्देश अपनाना चाहिए?"
             ],
             grounding_sources=[],
-            disclaimer="चिकित्सा अस्वीकरण: हेल्थीक्योर (Healthiecure) केवल जानकारी व्यवस्थित करता है। चिकित्सकीय परामर्श के लिए डॉक्टर से संपर्क करें।",
+            disclaimer="चिकित्सा अस्वीकरण: हेल्थीक्योर (HealthieCure) केवल जानकारी व्यवस्थित करता है। चिकित्सकीय परामर्श के लिए डॉक्टर से संपर्क करें।",
             language="hi"
         )
     else:
         return AISummaryResponse(
             title="Unified Health Intelligence Overview",
             what_document_says=(
-                f"Healthiecure has organized {len(docs)} medical records across your health history, "
+                f"HealthieCure has organized {len(docs)} medical records across your health history, "
                 f"tracking {len(meds)} documented medications and {len(labs)} clinical laboratory parameters."
             ),
             important_results=[
@@ -129,7 +129,7 @@ def get_holistic_summary(
             ],
             grounding_sources=[],
             disclaimer=(
-                "Medical Disclaimer: Healthiecure supports organizing and understanding personal health records. "
+                "Medical Disclaimer: HealthieCure supports organizing and understanding personal health records. "
                 "It does not diagnose conditions or prescribe treatment. Please review these insights with your physician."
             ),
             language="en"

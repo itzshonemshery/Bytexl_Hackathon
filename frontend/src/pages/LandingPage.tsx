@@ -7,20 +7,20 @@ import {
   ArrowRight,
   Sparkles,
   Shield,
-  FileCheck,
+  UploadCloud,
   Stethoscope,
   ChevronRight,
   ChevronLeft,
   Lock,
   CheckCircle2,
-  HelpCircle,
-  TrendingUp,
   Heart,
   Pill,
+  Users,
+  Compass,
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { ECGLine } from "../components/ECGLine";
-import { MedicalDisclaimer } from "../components/MedicalDisclaimer";
+import { HeartbeatPulse } from "../components/HeartbeatPulse";
+import { DNAStrand } from "../components/DNAStrand";
 
 interface LandingPageProps {
   onGetStarted: () => void;
@@ -39,225 +39,231 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
 
-  // Slides data demonstrating real medical document transformations
+  // Simplified, easily relatable transformation slides
   const slides = [
     {
-      id: "prescriptions",
-      category: "Prescriptions",
-      icon: Pill,
-      badge: "Decoded Prescription",
-      title: "Clarity on Every Medication & Dose",
-      subtitle: "Turn difficult doctor handwriting and shorthand into structured schedules with food instructions and safety checks.",
-      originalSnippet: "Tab. Metformin 500mg BD pc x 30d • Tab. Atorvastatin 10mg OD HS",
-      organizedData: [
-        { name: "Metformin Hydrochloride", dose: "500 mg • 1 Tablet", freq: "Twice daily (BD)", tip: "Take with breakfast and dinner" },
-        { name: "Atorvastatin", dose: "10 mg • 1 Tablet", freq: "Once daily at bedtime (OD HS)", tip: "Take with water before sleep" },
+      id: "lab_tests",
+      category: "Blood Test Reports",
+      icon: FlaskConical,
+      badge: "Laboratory Clarity",
+      title: "Clear Answers for Blood Tests & Numbers",
+      subtitle: "Understand abnormal flags grounded strictly in lab reference ranges without anxiety or complex jargon.",
+      originalSnippet: "HbA1c Glycated Hemoglobin: 7.4 % [Reference 4.0 - 5.6] (HIGH)",
+      simpleTranslation: [
+        {
+          heading: "Average Blood Sugar (HbA1c)",
+          meaning: "Your 3-month average glucose is 7.4%, which is above the standard 5.6% target.",
+          status: "Upward trend from 6.8% in Oct 2025",
+        },
+        {
+          heading: "Fasting Blood Sugar",
+          meaning: "Morning fasting glucose is 138 mg/dL (normal range is 70 - 99 mg/dL).",
+          status: "Requires regular review with your doctor",
+        },
       ],
-      doctorQuestion: "Doctor, do I need repeat blood sugar monitoring before adjusting this Metformin dosage?",
+      doctorQuestion: "Doctor, given my HbA1c moved to 7.4%, should we review my diet or modify my Metformin dose?",
     },
     {
-      id: "lab_tests",
-      category: "Biochemistry & Labs",
-      icon: FlaskConical,
-      badge: "Laboratory Intelligence",
-      title: "Contextualized Blood Indicators",
-      subtitle: "Understand abnormal flags grounded strictly in laboratory reference ranges, without anxiety or unsupported self-diagnosis.",
-      originalSnippet: "HbA1c Glycated Hemoglobin: 7.4 % [4.0 - 5.6] (High) • Fasting Glucose: 138 mg/dL [70 - 99]",
-      organizedData: [
-        { name: "HbA1c (3-Month Sugar)", dose: "7.4 % (Elevated)", freq: "Reference: 4.0 - 5.6 %", tip: "Upward trend from 6.8% (Oct 2025)" },
-        { name: "Fasting Blood Sugar", dose: "138 mg/dL (Flagged)", freq: "Reference: 70 - 99 mg/dL", tip: "Requires clinical physician review" },
+      id: "prescriptions",
+      category: "Doctor Prescriptions",
+      icon: Pill,
+      badge: "Prescription Schedule",
+      title: "Every Medicine, Dose & Timing Decoded",
+      subtitle: "Convert rushed doctor handwriting and abbreviations into a crystal-clear daily timetable.",
+      originalSnippet: "Tab. Metformin 500mg BD pc x 30d • Tab. Atorvastatin 10mg OD HS",
+      simpleTranslation: [
+        {
+          heading: "Metformin 500 mg",
+          meaning: "Take 1 tablet twice daily, right after breakfast and dinner.",
+          status: "Daily metabolic support",
+        },
+        {
+          heading: "Atorvastatin 10 mg",
+          meaning: "Take 1 tablet once daily at bedtime with a glass of water.",
+          status: "Cholesterol balance",
+        },
       ],
-      doctorQuestion: "Given my HbA1c moved from 6.8% to 7.4% over 5 months, should we review my diet or medication regimen?",
+      doctorQuestion: "Should I take these medicines before or after meals, and are there any food items to avoid?",
     },
     {
       id: "discharge",
       category: "Hospital Discharge",
       icon: Clock,
-      badge: "Discharge & Recovery",
-      title: "Structured Post-Hospital Care",
-      subtitle: "Extract hospital courses, primary diagnoses, and post-discharge antibiotics into an actionable recovery checklist.",
-      originalSnippet: "Fortis Hospital • Diagnosis: Acute Gastroenteritis with Dehydration • Tab Rifaximin 400mg TDS x 5d",
-      organizedData: [
-        { name: "Primary Diagnosis", dose: "Acute Gastroenteritis", freq: "Inpatient Stay: 4 Days", tip: "Hydration therapy completed" },
-        { name: "Rifaximin (Antibiotic)", dose: "400 mg • Thrice daily", freq: "Completed 5-Day Course", tip: "Historical medication archived" },
+      badge: "Recovery Checklist",
+      title: "Stress-Free Post-Hospital Recovery",
+      subtitle: "Extract hospital courses, primary diagnoses, and post-discharge antibiotics into an easy recovery plan.",
+      originalSnippet: "Diagnosis: Acute Gastroenteritis c/o dehydration • Tab Rifaximin 400mg TDS x 5d",
+      simpleTranslation: [
+        {
+          heading: "Diagnosis & Condition",
+          meaning: "Treated for stomach infection and fluid loss. Stabilized before discharge.",
+          status: "Recovery phase at home",
+        },
+        {
+          heading: "Post-Discharge Medication",
+          meaning: "Complete the 5-day antibiotic course (Rifaximin 400mg, 3 times a day).",
+          status: "Do not stop course early",
+        },
       ],
-      doctorQuestion: "When should I schedule an in-person follow-up consultation with my treating physician?",
+      doctorQuestion: "What warning signs should prompt an immediate hospital visit, and when is my follow-up check?",
     },
     {
-      id: "abha_sync",
+      id: "abha",
       category: "ABHA Health ID",
       icon: Activity,
-      badge: "ABDM Interoperability",
-      title: "Unified Care Context Exchange",
-      subtitle: "Connect your simulated ABHA ID to discover and import records from Max Healthcare, Apollo, and Dr. Lal PathLabs with full consent.",
-      originalSnippet: "ABHA: 91-4521-8890-1234 • HL7 FHIR R4 Bundle serialized • Explicit patient consent granted",
-      organizedData: [
-        { name: "Max Super Speciality", dose: "Discharge Summary", freq: "Inpatient Record", tip: "Care Context: CC-MAX-2025" },
-        { name: "Dr. Lal PathLabs", dose: "Comprehensive Panel", freq: "Diagnostic Lab", tip: "Care Context: CC-LAL-2025" },
+      badge: "One-Click Sync",
+      title: "All Hospital Records in One Digital Timeline",
+      subtitle: "Connect securely with Ayushman Bharat Digital Mission (ABDM) to organize your lifetime care history.",
+      originalSnippet: "ABHA ID: 91-4521-8890-1234 • Facility: Max Healthcare & Fortis Hospital",
+      simpleTranslation: [
+        {
+          heading: "Centralized Government Health ID",
+          meaning: "Unified timeline connecting pathology labs, hospital visits, and prescriptions.",
+          status: "Consent-protected sandbox",
+        },
+        {
+          heading: "Interoperable & Portable",
+          meaning: "Download international FHIR R4 standard summaries whenever you change doctors.",
+          status: "Ready for medical consultations",
+        },
       ],
-      doctorQuestion: "Are all historical records properly linked to my digital health profile?",
+      doctorQuestion: "Can I share my complete chronological timeline directly before our consultation?",
     },
   ];
 
-  const handleNextSlide = () => {
-    setSlideDirection("next");
-    setActiveSlide((prev) => (prev + 1) % slides.length);
-  };
+  // Auto-advance slides gently with pause on hover
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSlideDirection("next");
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 6500);
+    return () => clearInterval(timer);
+  }, [slides.length]);
 
   const handlePrevSlide = () => {
     setSlideDirection("prev");
     setActiveSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  // Autoplay slides every 8 seconds for dynamic showcase
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNextSlide();
-    }, 8000);
-    return () => clearInterval(timer);
-  }, []);
+  const handleNextSlide = () => {
+    setSlideDirection("next");
+    setActiveSlide((prev) => (prev + 1) % slides.length);
+  };
 
   const currentSlide = slides[activeSlide];
 
   return (
     <div className="min-h-screen bg-medical-surface text-medical-charcoal selection:bg-medical-red selection:text-white">
-      {/* 1. Calm, Breathable Editorial Hero Section */}
-      <section className="relative overflow-hidden pt-10 pb-16 lg:pt-20 lg:pb-28">
+      
+      {/* 1. Calm, Breathable Editorial Hero Section with Comfort Photo */}
+      <section className="relative overflow-hidden pt-8 pb-16 lg:pt-16 lg:pb-24 border-b border-neutral-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
             
-            {/* Left Column: Editorial Headline & Actions */}
+            {/* Left Column: Human, Reassuring Guidance & Action */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              {/* Trust pill */}
+              
+              {/* Trust Pill */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200/90 shadow-2xs text-xs font-semibold text-neutral-800">
                 <span className="w-2 h-2 rounded-full bg-medical-red animate-pulse"></span>
-                <span>AI-Powered Personal Health Platform</span>
+                <span>Your Compassionate AI Health Companion</span>
               </div>
 
               {/* Classic Serif Editorial Headline */}
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-bold tracking-tight text-medical-black leading-[1.15]">
-                Your health records,{" "}
+              <h1 className="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-medical-black leading-[1.18]">
+                Healthcare records,{" "}
                 <span className="text-medical-red italic font-normal">
                   clearly understood.
                 </span>
               </h1>
 
-              {/* Heartbeat divider line */}
-              <div className="w-full max-w-md py-1">
-                <ECGLine height={24} animated={true} />
+              {/* Moving Glowing Minimal Heartbeat Line */}
+              <div className="w-full max-w-sm py-1">
+                <HeartbeatPulse className="heartbeat-glowing" glow={true} height={38} />
               </div>
 
               <p className="font-sans text-base sm:text-lg text-medical-muted leading-relaxed max-w-xl">
-                Healthiecure transforms complex prescriptions, dense blood test panels, and hospital discharge summaries into simple, organized, and traceable health records for informed conversations with your doctor.
+                Medical papers shouldn't feel like a foreign language. <strong className="text-medical-black font-semibold">HealthieCure</strong> turns confusing prescriptions, blood test results, and hospital summaries into plain, everyday words so you and your family can feel confident.
               </p>
 
               {/* Actions & Proof */}
               <div className="flex flex-wrap items-center gap-3 pt-2">
                 <button
                   type="button"
-                  onClick={onGetStarted}
-                  className="px-6 py-3.5 rounded-xl font-sans font-bold text-sm text-white bg-medical-red hover:bg-medical-red-hover shadow-xs hover:shadow-subtle transition-all flex items-center gap-2"
+                  onClick={onOpenDemo}
+                  className="px-6 py-3.5 rounded-xl font-sans font-bold text-sm text-white bg-medical-red hover:bg-medical-red-hover shadow-subtle hover:shadow-card-hover transition-all flex items-center gap-2 transform active:scale-98"
                 >
-                  <span>{t("heroCTA")}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <Sparkles className="w-4 h-4" />
+                  <span>Try 1-Click Instant Demo</span>
                 </button>
 
                 <button
                   type="button"
-                  onClick={onOpenDemo}
+                  onClick={onGetStarted}
                   className="px-5 py-3.5 rounded-xl font-sans font-bold text-sm text-medical-black bg-white hover:bg-neutral-50 border border-neutral-300 shadow-2xs transition-all flex items-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4 text-medical-red" />
-                  <span>{t("heroSecondaryCTA")}</span>
+                  <UploadCloud className="w-4 h-4 text-medical-red" />
+                  <span>Upload a Record</span>
                 </button>
               </div>
 
               {/* Reassuring Clinical Guardrail Badges */}
-              <div className="flex flex-wrap items-center gap-4 pt-4 text-xs text-medical-muted border-t border-neutral-200/80">
+              <div className="flex flex-wrap items-center gap-5 pt-4 text-xs text-medical-muted border-t border-neutral-200/80">
                 <div className="flex items-center gap-1.5 font-medium text-neutral-700">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                  <span>Non-Diagnostic Grounding</span>
+                  <span>100% Private & Protected</span>
                 </div>
                 <div className="flex items-center gap-1.5 font-medium text-neutral-700">
                   <Shield className="w-4 h-4 text-medical-red flex-shrink-0" />
-                  <span>ABDM & FHIR R4 Ready</span>
+                  <span>Grounded in Real Doctor Records</span>
                 </div>
                 <div className="flex items-center gap-1.5 font-medium text-neutral-700">
                   <Heart className="w-4 h-4 text-medical-red flex-shrink-0" />
-                  <span>100% Patient Privacy</span>
+                  <span>English & हिंदी Support</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Clean Editorial Visual Showcase */}
+            {/* Right Column: Welcoming Doctor & Patient Comfort Photograph */}
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-md lg:max-w-none">
                 
-                {/* Visual Card with Warm Clean Borders */}
-                <div className="bg-white rounded-3xl p-6 border border-neutral-200/90 shadow-clinical space-y-5">
-                  <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-medical-red text-white flex items-center justify-center font-bold text-xs">
-                        HC
-                      </div>
-                      <div>
-                        <div className="font-serif font-bold text-sm text-medical-black">healthiecure</div>
-                        <div className="text-[10px] text-medical-muted uppercase font-sans font-semibold">Active Health Timeline</div>
-                      </div>
-                    </div>
-                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      Sample Patient: Aarav Sharma
-                    </span>
+                {/* Doctor-Patient Comfort Picture Frame */}
+                <div className="relative rounded-3xl overflow-hidden shadow-clinical border border-neutral-200/90 bg-white group">
+                  <img
+                    src="/doctor-patient-comfort.png"
+                    alt="Doctor attentively consulting and listening to patient in a comforting clinic setting"
+                    className="w-full h-[420px] sm:h-[460px] object-cover object-top transition-transform duration-700 group-hover:scale-102"
+                  />
+
+                  {/* Gradient Overlay for Readable Floating Cards */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+
+                  {/* Floating Reassurance Badge (Top Right) */}
+                  <div className="absolute top-4 right-4 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-neutral-200 shadow-md text-xs font-semibold text-neutral-900 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Empathetic, Clear Care</span>
                   </div>
 
-                  {/* Sample Transformation Visual */}
-                  <div className="space-y-3">
-                    <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-1.5">
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-medical-muted flex items-center justify-between">
-                        <span>Original Laboratory Finding</span>
-                        <span className="text-medical-red font-mono font-bold">HIGH</span>
+                  {/* Floating Doctor-Patient Dialogue Pill (Bottom Overlap) */}
+                  <div className="absolute bottom-4 inset-x-4 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/40 shadow-lg space-y-1 text-left">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-xs font-serif font-bold text-medical-black">
+                        <Stethoscope className="w-3.5 h-3.5 text-medical-red" />
+                        <span>Doctor Consultation Ready</span>
                       </div>
-                      <div className="font-serif font-bold text-sm text-medical-black">
-                        HbA1c: 7.4 % <span className="font-sans font-normal text-xs text-neutral-500">(Ref: 4.0 - 5.6 %)</span>
-                      </div>
-                      <div className="text-[11px] text-medical-muted">
-                        Measured via HPLC assay at Metropolis Clinical Lab • 12-Mar-2026
-                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                        Zero Confusion
+                      </span>
                     </div>
-
-                    <div className="p-3.5 rounded-2xl bg-medical-red-blush border border-medical-red/20 space-y-2">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-medical-red font-sans">
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>Plain-Language Healthiecure Summary</span>
-                      </div>
-                      <p className="text-xs text-neutral-800 leading-relaxed font-sans">
-                        Your HbA1c measures average blood sugar over the last 3 months. Compared to your previous test on 15 Oct 2025 (6.8%), this shows an upward trajectory. A flagged value is not a diagnosis, but an important discussion point for your doctor.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Doctor Consultation Prompt */}
-                  <div className="pt-2 border-t border-neutral-100 flex items-center justify-between text-xs">
-                    <div className="flex items-center gap-1.5 text-neutral-600">
-                      <Stethoscope className="w-3.5 h-3.5 text-medical-red" />
-                      <span className="font-sans font-medium">Ready for your next doctor visit</span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={onOpenDemo}
-                      className="text-medical-red font-bold hover:underline inline-flex items-center gap-1"
-                    >
-                      <span>Explore</span>
-                      <ChevronRight className="w-3 h-3" />
-                    </button>
+                    <p className="text-[11px] text-neutral-600 leading-snug font-sans">
+                      Never leave the clinic confused about test numbers or medicine times. HealthieCure prepares exact questions to discuss with your doctor.
+                    </p>
                   </div>
                 </div>
 
-                {/* Floating pill badge */}
-                <div className="absolute -bottom-4 -left-3 bg-white px-3.5 py-2 rounded-2xl border border-neutral-200 shadow-clinical flex items-center gap-2 hidden sm:flex">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                  <span className="text-xs font-serif font-bold text-medical-black">ABDM Sandbox Active</span>
-                </div>
+                {/* Subtle Decorative Ambient Background Glow */}
+                <div className="absolute -bottom-6 -right-6 w-52 h-52 bg-medical-red/10 rounded-full blur-3xl pointer-events-none -z-10" />
               </div>
             </div>
 
@@ -265,82 +271,103 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 2. Three-Step Manageable Journey: Organized & User-Friendly */}
-      <section className="py-16 bg-white border-y border-neutral-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
+      {/* 2. Animated DNA Double Helix & Precision Banner */}
+      <section className="py-4 bg-white border-b border-neutral-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3 text-xs text-neutral-600 font-sans">
+            <span className="px-2.5 py-0.5 rounded-full bg-medical-red-blush text-medical-red font-bold text-[10px] uppercase tracking-wider">
+              Precision Intelligence
+            </span>
+            <span className="font-medium">Strict evidence-grounding • No made-up diagnosis • Designed for every family</span>
+          </div>
+          
+          {/* Moving DNA double helix animation */}
+          <div className="w-full sm:w-auto">
+            <DNAStrand pairs={14} height={42} />
+          </div>
+        </div>
+      </section>
+
+      {/* 3. 3 Simple Steps: Made for Everyone */}
+      <section className="py-16 bg-white border-b border-neutral-200/80">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          
+          <div className="max-w-2xl mx-auto space-y-2 mb-12">
             <span className="text-xs font-bold uppercase tracking-wider text-medical-red font-sans">
-              Simple & Calm Process
+              Simple & Accessible
             </span>
             <h2 className="font-serif text-3xl font-bold text-medical-black tracking-tight">
-              Three steps from paper clutter to medical clarity
+              How HealthieCure works for you
             </h2>
-            <p className="text-xs sm:text-sm text-medical-muted font-sans">
-              Designed to take the anxiety and confusion out of managing medical records.
+            <p className="font-sans text-xs sm:text-sm text-medical-muted">
+              Three effortless steps from paper medical records to clear, understandable peace of mind.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
             {/* Step 1 */}
             <div className="p-6 rounded-2xl bg-neutral-50/70 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
-              <div className="w-9 h-9 rounded-xl bg-white border border-neutral-200 text-medical-black font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-black font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
                 1
               </div>
-              <h3 className="font-serif font-bold text-base text-medical-black">
-                Snap or Upload Any Report
+              <h3 className="font-serif font-bold text-lg text-medical-black">
+                Snap or Upload
               </h3>
               <p className="font-sans text-xs text-medical-muted leading-relaxed">
-                Upload prescriptions, blood test sheets, hospital discharge papers, or X-rays in PDF or image format.
+                Take a quick photo of your prescription with your phone or upload a lab test PDF. Our system handles digital files and difficult handwriting.
               </p>
             </div>
 
             {/* Step 2 */}
             <div className="p-6 rounded-2xl bg-neutral-50/70 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
-              <div className="w-9 h-9 rounded-xl bg-white border border-neutral-200 text-medical-black font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-black font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
                 2
               </div>
-              <h3 className="font-serif font-bold text-base text-medical-black">
-                Side-by-Side Verification
+              <h3 className="font-serif font-bold text-lg text-medical-black">
+                Plain-Language Summary
               </h3>
               <p className="font-sans text-xs text-medical-muted leading-relaxed">
-                Review extracted medications, dosages, and test values right next to your original document with confidence badges before saving.
+                See your results translated into plain English or Hindi. Understand normal versus high numbers without worrying about scary internet searches.
               </p>
             </div>
 
             {/* Step 3 */}
             <div className="p-6 rounded-2xl bg-medical-red-blush/60 border border-medical-red/20 hover:border-medical-red/40 transition-all space-y-3 text-left">
-              <div className="w-9 h-9 rounded-xl bg-medical-red text-white font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
+              <div className="w-10 h-10 rounded-xl bg-medical-red text-white font-serif font-bold flex items-center justify-center text-sm shadow-2xs">
                 3
               </div>
-              <h3 className="font-serif font-bold text-base text-medical-black">
-                Plain English & Hindi Guidance
+              <h3 className="font-serif font-bold text-lg text-medical-black">
+                Questions for Your Doctor
               </h3>
               <p className="font-sans text-xs text-medical-muted leading-relaxed">
-                Understand what values measure, see historical trends, and get a list of prepared questions to discuss with your doctor.
+                Walk into your next consultation with prepared, tailored questions so you get the answers you need regarding diet, dosages, and future tests.
               </p>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* 3. Interactive Animated Slide Carousel: Live Document Transformations */}
-      <section className="py-20 bg-medical-surface overflow-hidden">
+      {/* 4. Interactive Transformation Carousel: Animated Slide Changes */}
+      <section className="py-20 bg-medical-surface border-b border-neutral-200/80 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <div className="space-y-2">
-              <div className="text-xs font-bold uppercase tracking-wider text-medical-red font-sans">
-                Interactive Transformation Showcase
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div className="space-y-2 text-left">
+              <div className="text-xs font-bold uppercase tracking-wider text-medical-red font-sans flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-medical-red" />
+                <span>Interactive Document Showcase</span>
               </div>
               <h2 className="font-serif text-3xl font-bold text-medical-black tracking-tight">
-                See how Healthiecure decodes each report
+                See how HealthieCure decodes each report
               </h2>
               <p className="text-xs sm:text-sm text-medical-muted font-sans max-w-xl">
-                Switch through the slides below to see how medical records are converted into clear, understandable information with zero guesswork.
+                Switch through the slides below to see real-world medical documents translated into clear, structured guidance.
               </p>
             </div>
 
-            {/* Carousel Slide Navigation Controls */}
+            {/* Slide Navigation Controls */}
             <div className="flex items-center gap-2 self-start md:self-auto">
               <button
                 type="button"
@@ -362,7 +389,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           {/* Slide Category Selectors */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          <div className="flex flex-wrap gap-2 mb-6">
             {slides.map((s, idx) => {
               const Icon = s.icon;
               const isActive = activeSlide === idx;
@@ -395,13 +422,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 slideDirection === "next" ? "animate-slide-next" : "animate-slide-prev"
               }`}
             >
-              {/* Left Column of Slide */}
+              {/* Left Column of Slide: Context & Original Source Evidence */}
               <div className="lg:col-span-5 space-y-4 text-left">
                 <span className="px-3 py-1 rounded-full text-xs font-sans font-bold bg-medical-red-blush text-medical-red border border-medical-red/20 inline-block">
                   {currentSlide.badge}
                 </span>
 
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-medical-black leading-snug">
+                <h3 className="font-serif text-2xl font-bold text-medical-black leading-snug">
                   {currentSlide.title}
                 </h3>
 
@@ -410,9 +437,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </p>
 
                 {/* Raw snippet pill */}
-                <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-200 text-xs font-mono text-neutral-600 space-y-1">
-                  <div className="text-[10px] uppercase font-bold text-neutral-400 font-sans">Source Document Evidence:</div>
-                  <div className="truncate">{currentSlide.originalSnippet}</div>
+                <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs font-mono text-neutral-700 space-y-1">
+                  <div className="text-[10px] uppercase font-bold text-neutral-400 font-sans tracking-wider">
+                    Original Document Printed Line:
+                  </div>
+                  <div className="truncate font-semibold">{currentSlide.originalSnippet}</div>
                 </div>
 
                 <div className="pt-2">
@@ -421,35 +450,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     onClick={onOpenDemo}
                     className="inline-flex items-center gap-2 text-xs font-sans font-bold text-medical-red hover:underline"
                   >
-                    <span>Try this in interactive demo mode</span>
+                    <span>Open full demo record in app</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>
 
-              {/* Right Column of Slide: Decoded Transformation */}
-              <div className="lg:col-span-7 bg-neutral-50/80 p-5 sm:p-6 rounded-2xl border border-neutral-200 space-y-4">
+              {/* Right Column of Slide: Plain-Language Translation */}
+              <div className="lg:col-span-7 bg-neutral-50/90 p-5 sm:p-6 rounded-2xl border border-neutral-200 space-y-4 text-left">
                 <div className="flex items-center justify-between text-xs font-sans font-bold text-medical-black pb-2 border-b border-neutral-200">
-                  <span>Structured & Verified Translation</span>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Plain-Language HealthieCure Summary</span>
+                  </div>
                   <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
-                    Confidence: 98%
+                    Human-Verified
                   </span>
                 </div>
 
-                {/* Structured records list */}
+                {/* Translated points */}
                 <div className="space-y-3">
-                  {currentSlide.organizedData.map((item, idx) => (
+                  {currentSlide.simpleTranslation.map((item, idx) => (
                     <div key={idx} className="p-3.5 rounded-xl bg-white border border-neutral-200 shadow-2xs space-y-1">
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-serif font-bold text-medical-black">{item.name}</span>
-                        <span className="font-sans font-semibold text-medical-red text-[11px]">{item.dose}</span>
+                        <span className="font-serif font-bold text-medical-black">{item.heading}</span>
+                        <span className="text-[10px] font-semibold text-medical-red bg-medical-red-blush px-2 py-0.5 rounded">
+                          {item.status}
+                        </span>
                       </div>
-                      <div className="text-[11px] text-neutral-600 font-sans">
-                        <span className="font-semibold text-neutral-800">Frequency:</span> {item.freq}
-                      </div>
-                      <div className="text-[11px] text-neutral-500 font-sans italic">
-                        Tip: {item.tip}
-                      </div>
+                      <p className="text-xs text-neutral-700 font-sans leading-relaxed">
+                        {item.meaning}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -458,13 +489,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 <div className="p-3.5 rounded-xl bg-white border border-neutral-200 space-y-1">
                   <div className="flex items-center gap-1.5 text-xs font-bold text-medical-black font-sans">
                     <Stethoscope className="w-3.5 h-3.5 text-medical-red" />
-                    <span>Curated Question to Ask Your Doctor</span>
+                    <span>Question to Ask Your Doctor</span>
                   </div>
                   <p className="text-xs text-neutral-700 font-sans italic">
                     "{currentSlide.doctorQuestion}"
                   </p>
                 </div>
               </div>
+
             </div>
 
             {/* Slide dots indicator */}
@@ -489,115 +521,153 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Four Core Pillars of Care: Organized & Clean */}
-      <section id="features" className="py-20 bg-white border-t border-neutral-200">
+      {/* 5. Designed for Everyday People & Families */}
+      <section className="py-16 bg-white border-b border-neutral-200/80">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+          <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
             <span className="text-xs font-bold uppercase tracking-wider text-medical-red font-sans">
-              Care Architecture
+              Care for the Entire Family
             </span>
             <h2 className="font-serif text-3xl font-bold text-medical-black tracking-tight">
-              Clinical intelligence built for everyday patients
+              Designed so anyone can use it with ease
             </h2>
             <p className="text-xs sm:text-sm text-medical-muted font-sans">
-              Everything required to organize your health records without feeling overwhelmed.
+              Whether managing your own health or caring for aging parents, HealthieCure keeps complexity out of your way.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-neutral-50/50 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+            
+            {/* Grandparents & Seniors */}
+            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-red flex items-center justify-center shadow-2xs">
-                <FileText className="w-5 h-5" />
+                <Users className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-medical-black">{t("feat1Title")}</h3>
-              <p className="font-sans text-xs sm:text-sm text-medical-muted leading-relaxed">{t("feat1Desc")}</p>
+              <h3 className="font-serif font-bold text-base text-medical-black">
+                For Seniors & Grandparents
+              </h3>
+              <p className="font-sans text-xs text-medical-muted leading-relaxed">
+                Large, high-contrast readable fonts, clear morning/night medicine schedules, and full Hindi translation to eliminate confusion.
+              </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-neutral-50/50 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
+            {/* Busy Families */}
+            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-red flex items-center justify-center shadow-2xs">
-                <Sparkles className="w-5 h-5" />
+                <Heart className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-medical-black">{t("feat2Title")}</h3>
-              <p className="font-sans text-xs sm:text-sm text-medical-muted leading-relaxed">{t("feat2Desc")}</p>
+              <h3 className="font-serif font-bold text-base text-medical-black">
+                For Families & Caregivers
+              </h3>
+              <p className="font-sans text-xs text-medical-muted leading-relaxed">
+                Keep every doctor prescription, lab report, and vaccine record organized in one clean chronological timeline that never gets lost.
+              </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-neutral-50/50 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
+            {/* Clinic Consultations */}
+            <div className="p-6 rounded-2xl bg-neutral-50 border border-neutral-200 space-y-3">
               <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-red flex items-center justify-center shadow-2xs">
-                <Clock className="w-5 h-5" />
+                <Stethoscope className="w-5 h-5" />
               </div>
-              <h3 className="font-serif font-bold text-lg text-medical-black">{t("feat3Title")}</h3>
-              <p className="font-sans text-xs sm:text-sm text-medical-muted leading-relaxed">{t("feat3Desc")}</p>
+              <h3 className="font-serif font-bold text-base text-medical-black">
+                For Doctor Appointments
+              </h3>
+              <p className="font-sans text-xs text-medical-muted leading-relaxed">
+                Show your physician a structured overview of all ongoing medicines and previous tests in 10 seconds, leaving more time for actual care.
+              </p>
             </div>
 
-            <div className="p-6 rounded-2xl bg-neutral-50/50 border border-neutral-200 hover:border-neutral-300 transition-all space-y-3 text-left">
-              <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 text-medical-red flex items-center justify-center shadow-2xs">
-                <Activity className="w-5 h-5" />
-              </div>
-              <h3 className="font-serif font-bold text-lg text-medical-black">{t("feat4Title")}</h3>
-              <p className="font-sans text-xs sm:text-sm text-medical-muted leading-relaxed">{t("feat4Desc")}</p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Trust, Privacy & Safety Pledges */}
-      <section className="py-16 bg-neutral-50 border-t border-neutral-200">
+      {/* 6. Instant 1-Click Sample Demo Bar */}
+      <section className="py-12 bg-neutral-50 border-b border-neutral-200/80">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+          <div className="space-y-1">
+            <h3 className="font-serif text-xl font-bold text-medical-black">
+              Try HealthieCure instantly with pre-loaded medical records
+            </h3>
+            <p className="text-xs text-medical-muted">
+              Click any sample below to explore the working prototype without creating an account or uploading your own files.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={onOpenDemo}
+              className="px-4 py-2.5 rounded-xl bg-white border border-neutral-200 hover:border-medical-red text-xs font-bold text-medical-black shadow-2xs transition-all flex items-center gap-2 hover:bg-medical-red-blush"
+            >
+              <FlaskConical className="w-4 h-4 text-medical-red" />
+              <span>🩸 Sample 1: Blood Sugar HbA1c (7.4%)</span>
+            </button>
+
+            <button
+              onClick={onOpenDemo}
+              className="px-4 py-2.5 rounded-xl bg-white border border-neutral-200 hover:border-medical-red text-xs font-bold text-medical-black shadow-2xs transition-all flex items-center gap-2 hover:bg-medical-red-blush"
+            >
+              <Pill className="w-4 h-4 text-medical-red" />
+              <span>💊 Sample 2: Diabetic Prescription</span>
+            </button>
+
+            <button
+              onClick={onOpenDemo}
+              className="px-4 py-2.5 rounded-xl bg-white border border-neutral-200 hover:border-medical-red text-xs font-bold text-medical-black shadow-2xs transition-all flex items-center gap-2 hover:bg-medical-red-blush"
+            >
+              <Clock className="w-4 h-4 text-medical-red" />
+              <span>🏥 Sample 3: Fortis Discharge Summary</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Safety, Privacy & Hackathon Benchmark */}
+      <section className="py-14 bg-white border-b border-neutral-200/80">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left">
             
-            <div className="lg:col-span-5 space-y-3 text-left">
+            <div className="lg:col-span-6 space-y-3">
               <span className="text-xs font-bold uppercase tracking-wider text-medical-red font-sans">
-                Patient Protection
+                Medical Safety Protocol
               </span>
-              <h2 className="font-serif text-3xl font-bold text-medical-black tracking-tight">
-                Designed with strict non-diagnostic boundaries
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-medical-black tracking-tight">
+                Designed to support understanding, never to replace your doctor
               </h2>
               <p className="font-sans text-xs sm:text-sm text-medical-muted leading-relaxed">
-                Healthiecure strictly organizes medical documents and explains laboratory reference ranges. It never replaces your doctor, pretends to make diagnoses, or modifies prescriptions.
+                HealthieCure strictly organizes medical documents and explains laboratory reference ranges. It never diagnoses diseases independently or recommends altering medicine dosages.
               </p>
               <div className="pt-2">
                 <button
                   type="button"
                   onClick={onGoToEvaluation}
-                  className="font-sans text-xs font-bold text-medical-red hover:underline inline-flex items-center gap-1"
+                  className="font-sans text-xs font-bold text-medical-red hover:underline inline-flex items-center gap-1.5"
                 >
-                  <span>Review extraction accuracy benchmark report</span>
+                  <Compass className="w-4 h-4" />
+                  <span>Inspect Hackathon Extraction Accuracy Benchmark</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-              <div className="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs">
-                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black mb-1">
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 space-y-1">
+                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black">
                   <Lock className="w-4 h-4 text-medical-red" />
-                  <span>{t("trust1Title")}</span>
+                  <span>Per-User Data Isolation</span>
                 </div>
-                <p className="font-sans text-xs text-medical-muted">{t("trust1Desc")}</p>
+                <p className="font-sans text-xs text-medical-muted">
+                  Bcrypt password hashing and secure tokenized sessions with zero data leakage.
+                </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs">
-                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black mb-1">
-                  <CheckCircle2 className="w-4 h-4 text-medical-red" />
-                  <span>{t("trust2Title")}</span>
-                </div>
-                <p className="font-sans text-xs text-medical-muted">{t("trust2Desc")}</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs">
-                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black mb-1">
+              <div className="p-4 rounded-xl bg-neutral-50 border border-neutral-200 space-y-1">
+                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black">
                   <Shield className="w-4 h-4 text-medical-red" />
-                  <span>{t("trust3Title")}</span>
+                  <span>Simulated ABHA Sandbox</span>
                 </div>
-                <p className="font-sans text-xs text-medical-muted">{t("trust3Desc")}</p>
-              </div>
-
-              <div className="p-4 rounded-xl bg-white border border-neutral-200 shadow-2xs">
-                <div className="flex items-center gap-2 font-serif font-bold text-xs text-medical-black mb-1">
-                  <HelpCircle className="w-4 h-4 text-medical-red" />
-                  <span>{t("trust4Title")}</span>
-                </div>
-                <p className="font-sans text-xs text-medical-muted">{t("trust4Desc")}</p>
+                <p className="font-sans text-xs text-medical-muted">
+                  Fully transparent sandbox boundary for ABDM and FHIR R4 standard healthcare data.
+                </p>
               </div>
             </div>
 
@@ -605,14 +675,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* 6. Footer */}
+      {/* 8. Footer */}
       <footer className="bg-neutral-900 text-white pt-12 pb-8 border-t border-neutral-800 text-left">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-neutral-800">
             <div>
               <div className="flex items-center gap-2 font-serif font-bold text-xl tracking-tight">
                 <span className="w-2.5 h-2.5 rounded-full bg-medical-red"></span>
-                <span>healthie<span className="text-medical-red italic font-normal">cure</span></span>
+                <span>Healthie<span className="text-medical-red italic font-normal">Cure</span></span>
               </div>
               <div className="text-xs text-neutral-400 mt-1 font-sans">
                 Personal Health Platform • Built for Altrix Labs Healthcare Hackathon
@@ -638,10 +708,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div className="text-center text-[11px] text-neutral-500 font-sans">
-            &copy; 2026 Healthiecure. {t("footerRights")}
+            &copy; 2026 HealthieCure. {t("footerRights")}
           </div>
         </div>
       </footer>
+
     </div>
   );
 };

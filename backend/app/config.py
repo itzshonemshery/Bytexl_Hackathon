@@ -2,7 +2,7 @@ import os
 from pydantic import BaseModel
 
 class Settings(BaseModel):
-    APP_NAME: str = "Healthiecure"
+    APP_NAME: str = "HealthieCure"
     API_V1_STR: str = "/api/v1"
     SECRET_KEY: str = os.getenv("SECRET_KEY", "healthiecure-secure-dev-jwt-key-2026-altrix")
     ALGORITHM: str = "HS256"

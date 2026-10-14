@@ -63,7 +63,7 @@ def get_medications(user: dict = Depends(get_current_user), db: sqlite3.Connecti
         "total_count": len(rows),
         "doctor_preparation_questions": doctor_questions,
         "safety_notice": (
-            "Safety Notice: Healthiecure displays only medications documented in your uploaded medical records. "
+            "Safety Notice: HealthieCure displays only medications documented in your uploaded medical records. "
             "Never start, stop, or modify your medication dosage without explicit guidance from a qualified doctor."
         )
     }

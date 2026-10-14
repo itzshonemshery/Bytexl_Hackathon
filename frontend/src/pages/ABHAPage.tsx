@@ -216,7 +216,7 @@ export const ABHAPage: React.FC = () => {
             <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-xs text-neutral-600 flex items-start gap-2.5">
               <Lock className="w-4 h-4 text-medical-red flex-shrink-0 mt-0.5" />
               <span>
-                By connecting, you grant explicit consent for Healthiecure to discover and fetch simulated care contexts from registered ABDM facilities.
+                By connecting, you grant explicit consent for HealthieCure to discover and fetch simulated care contexts from registered ABDM facilities.
               </span>
             </div>
 
@@ -240,7 +240,7 @@ export const ABHAPage: React.FC = () => {
                 Discoverable Care Contexts from Simulated Hospitals
               </h3>
               <p className="text-xs text-medical-muted">
-                Select clinical records to pull into your Healthiecure unified timeline:
+                Select clinical records to pull into your HealthieCure unified timeline:
               </p>
             </div>
 
